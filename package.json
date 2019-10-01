@@ -1,0 +1,29 @@
+{
+  "name": "FW",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KROHNICK/FW.git"
+  },
+  "author": "KROHNICK <business.kanekperez@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.0.7",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1"
+  },
+  "description": "Market website for merchandise as requested by owner of FWLeatherGoods",
+  "bugs": {
+    "url": "https://github.com/KROHNICK/FW/issues"
+  },
+  "homepage": "https://github.com/KROHNICK/FW#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": []
+}
