@@ -13,13 +13,13 @@ class MyApp extends App {
       shopOrigin: Cookies.get("shopOrigin"),
       forceRedirect: true
     };
-
     return (
       <React.Fragment>
         <Head>
           <title>Sample App</title>
           <meta charSet="utf-8" />
         </Head>
+
         <Provider config={config}>
           <AppProvider>
             <Component {...pageProps} />
