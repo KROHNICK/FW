@@ -1,6 +1,7 @@
 import App from "next/app";
 import Head from "next/head";
 import { AppProvider } from "@shopify/polaris";
+import { Provider } from "@shopify/app-bridge-react";
 import "@shopify/polaris/styles.css";
 
 class MyApp extends App {
@@ -12,9 +13,11 @@ class MyApp extends App {
           <title>Sample App</title>
           <meta charSet="utf-8" />
         </Head>
-        <AppProvider>
-          <Component {...pageProps} />
-        </AppProvider>
+        <Provider>
+          <AppProvider>
+            <Component {...pageProps} />
+          </AppProvider>
+        </Provider>
       </React.Fragment>
     );
   }
