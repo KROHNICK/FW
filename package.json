@@ -24,7 +24,8 @@
     "next": "^9.0.7",
     "react": "^16.10.1",
     "react-apollo": "^3.1.2",
-    "react-dom": "^16.10.1"
+    "react-dom": "^16.10.1",
+    "store-js": "^2.0.4"
   },
   "description": "Market website for merchandise as requested by owner of FWLeatherGoods",
   "bugs": {
