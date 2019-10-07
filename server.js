@@ -21,7 +21,7 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
+const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY, HOST } = process.env;
 
 app.prepare().then(() => {
   const server = new Koa();
@@ -36,20 +36,20 @@ app.prepare().then(() => {
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
         ctx.cookies.set("shopOrigin", shop, { httpOnly: false });
-        const registration = await registerWebhook({
-          address: `${HOST}/webhooks/products/create`,
-          topic: "PRODUCTS_CREATE",
-          accessToken,
-          shop,
-          apiVersion: ApiVersion.October19
-        });
+        // const registration = await registerWebhook({
+        //   address: `${HOST}/webhooks/products/create`,
+        //   topic: "PRODUCTS_CREATE",
+        //   accessToken,
+        //   shop,
+        //   apiVersion: ApiVersion.October19
+        // });
 
-        if (registration.success) {
-          console.log("Successfully registered webhook!");
-        } else {
-          console.log("Failed to register webhook", registration.result);
-        }
-        await getSubscriptionUrl(ctx, accessToken, shop);
+        // if (registration.success) {
+        //   console.log("Successfully registered webhook!");
+        // } else {
+        //   console.log("Failed to register webhook", registration.result);
+        // }
+        // await getSubscriptionUrl(ctx, accessToken, shop);
       }
     })
   );
