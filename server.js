@@ -25,6 +25,7 @@ const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY, HOST } = process.env;
 
 app.prepare().then(() => {
   const server = new Koa();
+  const router = new Router();
   server.use(session(server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
@@ -53,15 +54,20 @@ app.prepare().then(() => {
       }
     })
   );
+  const webhook = receiveWebhook({ secret: SHOPIFY_API_SECRET_KEY });
+
+  router.post("/webhooks/products/create", webhook, ctx => {
+    console.log("received webhook: ", ctx.state.webhook);
+  });
 
   server.use(graphQLProxy({ version: ApiVersion.April19 }));
-  server.use(verifyRequest());
-  server.use(async ctx => {
+  router.get("*", verifyRequest(), async ctx => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
-    return;
   });
+  server.use(router.allowedMethods());
+  server.use(router.routes());
 
   server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
